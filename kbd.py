@@ -12,6 +12,8 @@ class State(str, Enum):
     option = "option"
     shift_option = "shift_option"
     caps_option = "caps_option"
+    cmd_option = "cmd_option"
+    control = "control"
 
     @property
     def index(self) -> int:

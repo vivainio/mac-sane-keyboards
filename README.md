@@ -2,7 +2,7 @@
 
 macOS keyboard layouts defined as a base `.keylayout` plus small Python patches.
 
-    base/FIN.keylayout    base layout (Finnish, no dead keys)
+    base/FIN.keylayout    stock macOS Finnish layout (dumped with tools/dump_layout.swift)
     layouts/fin_dev.py    layout definition: name, base, PATCH table
     build.py              builds bundles into build/
 
@@ -27,8 +27,13 @@ Add `layouts/<name>.py` defining `LAYOUT`:
         },
     )
 
-`State`: plain, shift, caps, option, shift_option, caps_option.
+`State`: plain, shift, caps, option, shift_option, caps_option, cmd_option, control.
 
-`base/FIN.keylayout` is from
-https://github.com/saneDG/keyboard-layout-FIN-no-deadkeys
-(`~` and backtick on single keys, `¨` behind Option, no dead keys).
+## Tools
+
+    swift tools/dump_layout.swift com.apple.keylayout.Finnish FIN > base/FIN.keylayout
+    tools/diff_layouts.py a.keylayout b.keylayout    # show differing key outputs
+
+`fin_dev.py` is based on
+https://github.com/saneDG/keyboard-layout-FIN-no-deadkeys; its output matches
+that layout key for key.

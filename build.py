@@ -113,4 +113,5 @@ def main():
         print("Installed. Log out/in, then add the layout in System Settings > Keyboard > Text Input.")
 
 
-main()
+if __name__ == "__main__":
+    main()
