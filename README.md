@@ -14,16 +14,20 @@ System Settings → Keyboard → Text Input.
 
 ## Defining a layout
 
-Add `layouts/<name>.py`:
+Add `layouts/<name>.py` defining `LAYOUT`:
 
-    NAME = "FIN-my-layout"    # no spaces
-    DISPLAY = "FIN my layout"
-    BASE = "FIN"
-    PATCH = {
-        30: {"plain": "~", "option": "¨"},   # key code -> modifier state -> output
-    }
+    from kbd import Layout, State
 
-Modifier states: plain, shift, caps, option, shift_option, caps_option.
+    LAYOUT = Layout(
+        name="FIN-my-layout",     # no spaces
+        display="FIN my layout",
+        base="FIN",
+        patch={
+            30: {State.plain: "~", State.option: "¨"},   # key code -> state -> output
+        },
+    )
+
+`State`: plain, shift, caps, option, shift_option, caps_option.
 
 `base/FIN.keylayout` is from
 https://github.com/saneDG/keyboard-layout-FIN-no-deadkeys
