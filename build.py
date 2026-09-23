@@ -100,11 +100,13 @@ def build(layout: Layout) -> Path:
     return contents.parent
 
 
-def main():
+def main(install=None):
+    if install is None:
+        install = sys.argv[1:] == ["install"]
     bundles = [build(load(p)) for p in sorted((ROOT / "layouts").glob("*.py"))]
     for b in bundles:
         print("built", b.relative_to(ROOT))
-    if sys.argv[1:] == ["install"]:
+    if install:
         dest = Path("/Library/Keyboard Layouts")
         subprocess.run(["sudo", "mkdir", "-p", str(dest)], check=True)
         for b in bundles:
