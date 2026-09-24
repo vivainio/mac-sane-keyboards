@@ -105,14 +105,31 @@ def build(layout: Layout) -> Path:
     return contents.parent
 
 
-def install():
+def build_all() -> list[Path]:
     bundles = [build(load(p)) for p in sorted((ROOT / "layouts").glob("*.py"))]
     for b in bundles:
         print("built", b.relative_to(ROOT))
+    return bundles
+
+
+def package() -> list[Path]:
+    """Zip each bundle into dist/<name>.zip (for GitHub releases)."""
+    dist = ROOT / "dist"
+    shutil.rmtree(dist, ignore_errors=True)
+    dist.mkdir()
+    zips = []
+    for b in build_all():
+        z = shutil.make_archive(str(dist / b.stem), "zip", root_dir=b.parent, base_dir=b.name)
+        print("packaged", Path(z).relative_to(ROOT))
+        zips.append(Path(z))
+    return zips
+
+
+def install():
+    bundles = build_all()
     dest = Path("/Library/Keyboard Layouts")
     subprocess.run(["sudo", "mkdir", "-p", str(dest)], check=True)
     for b in bundles:
         subprocess.run(["sudo", "rm", "-rf", str(dest / b.name)], check=True)
         subprocess.run(["sudo", "cp", "-R", str(b), str(dest)], check=True)
     print("Installed. Log out/in, then add the layout in System Settings > Keyboard > Text Input.")
-

@@ -63,5 +63,7 @@ swift tools/dump_layout.swift com.apple.keylayout.<InputSourceID> <BASE> > base/
 - Layout `name` must not contain spaces (`Layout` raises otherwise).
 - The base file contains XML 1.1 control-char references; `build.py` (used by `kb.py`) handles
   them, so don't parse/rewrite the file with other tools.
-- `build/` is generated; don't commit it.
+- `build/` and `dist/` are generated; don't commit them.
+- Releases: pushing a `v*` tag runs `.github/workflows/release.yml`, which runs `./kb.py package` and
+  attaches the zips; `install.sh` installs the latest release. Don't tag or release without asking.
 - Keep patches minimal so the diff against stock stays reviewable.
