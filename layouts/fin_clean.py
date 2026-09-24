@@ -7,6 +7,8 @@ LAYOUT = Layout(
     display="FIN clean layout",
     base="FIN",
     patch={
+        # the 4 key: $ on shift, € moved to option
+        21: {S.shift: "$", S.option: "€", S.caps_option: "€"},
         # top left (§ ° key): ~ plain, ` on shift
         10: {S.plain: "~", S.shift: "`", S.caps: "~", S.option: "~", S.shift_option: "`",
              S.caps_option: "~", S.cmd_option: "~"},
