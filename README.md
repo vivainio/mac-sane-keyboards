@@ -8,7 +8,6 @@ macOS keyboard layouts defined as a base `.keylayout` plus small Python patches.
     kb.py                 CLI: list/show/key/diff/install/package
 
     ./kb.py install       build into build/ + copy to /Library/Keyboard Layouts (sudo)
-
     ./kb.py package       zip bundles into dist/ (release assets)
 
 ## Install from a release
