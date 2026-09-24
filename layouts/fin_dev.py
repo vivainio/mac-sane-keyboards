@@ -13,6 +13,8 @@ LAYOUT = Layout(
         # the ¨ key: \ plain, | on shift, ^ and ´ on option
         30: {S.plain: "\\", S.shift: "|", S.caps: "\\", S.option: "^", S.shift_option: "´",
              S.caps_option: "^", S.cmd_option: "\\"},
+        # the a key: å on option
+        0: {S.option: "å", S.shift_option: "Å", S.caps_option: "Å"},
         # the 4 key: $ on shift
         21: {S.shift: "$"},
         # the e key: € on option
