@@ -1,14 +1,14 @@
 from kbd import Layout, State as S
 
-# Finnish layout for development: no dead keys, no §°¨. Tilde, backtick, parens,
-# curly braces and backslash are on single keys; [ ] stay on option+8/9.
+# Finnish layout for development: no dead keys, no §°¨. Tilde, backtick, slash,
+# ) } and backslash are on single keys; [ ] stay on option+8/9.
 LAYOUT = Layout(
     name="FIN-dev-layout",
     display="FIN dev layout",
     base="FIN",
     patch={
-        # the å key: ( plain, { on shift; å moved to option
-        33: {S.plain: "(", S.shift: "{", S.caps: "(", S.option: "å", S.shift_option: "Å",
+        # the å key: / plain, ? on shift; å moved to option
+        33: {S.plain: "/", S.shift: "?", S.caps: "/", S.option: "å", S.shift_option: "Å",
              S.caps_option: "Å"},
         # the ¨ key: ) plain, } on shift, ^ and ´ on option
         30: {S.plain: ")", S.shift: "}", S.caps: ")", S.option: "^", S.shift_option: "´",
