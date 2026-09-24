@@ -25,8 +25,15 @@ def read_xml(path):
     return ET.fromstring(text.split("?>", 1)[1])
 
 
+# macOS's keylayout parser drops outputs written as named entities (&quot; &amp; &lt; ...),
+# so emit numeric character references like Apple's own layouts do.
+ENTITIES = {"&quot;": "&#x0022;", "&amp;": "&#x0026;", "&lt;": "&#x003C;",
+            "&gt;": "&#x003E;", "&apos;": "&#x0027;"}
+ENTITY = re.compile("|".join(ENTITIES))
+
+
 def write_xml(root):
-    text = ET.tostring(root, encoding="unicode")
+    text = ENTITY.sub(lambda m: ENTITIES[m.group()], ET.tostring(root, encoding="unicode"))
     return HEADER + PUA.sub(lambda m: f"&#x{ord(m.group()) - 0xF000:04X};", text)
 
 

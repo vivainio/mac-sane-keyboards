@@ -32,11 +32,11 @@ func translate(_ layout: UnsafePointer<UCKeyboardLayout>, _ code: Int, _ mods: U
 func esc(_ s: String) -> String {
     s.unicodeScalars.map { u -> String in
         switch u {
-        case "&": return "&amp;"
-        case "<": return "&lt;"
-        case ">": return "&gt;"
-        case "\"": return "&quot;"
-        case "'": return "&apos;"
+        case "&": return "&#x0026;"
+        case "<": return "&#x003C;"
+        case ">": return "&#x003E;"
+        case "\"": return "&#x0022;"
+        case "'": return "&#x0027;"
         default: return u.value < 0x20 || u.value == 0x7f ? String(format: "&#x%04X;", u.value) : String(u)
         }
     }.joined()
