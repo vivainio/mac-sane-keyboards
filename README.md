@@ -25,6 +25,10 @@ Notes:
 - `[ ] { }` are still on option+8/9 (with shift for the curlies), and `|` is still on option+7.
 - `ä` and `ö` are unchanged.
 
+See also the Mac tutorial
+[Everyday Shortcuts](https://vivainio.github.io/articles/learning-mac/everyday-shortcuts/)
+for the modifier keys, common shortcuts and other ways to make the keyboard fit you.
+
 ## Install
 
     curl -fsSL https://raw.githubusercontent.com/vivainio/mac-sane-keyboards/main/install.sh | bash
