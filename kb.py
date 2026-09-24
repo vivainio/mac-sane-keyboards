@@ -7,7 +7,8 @@
     ./kb.py key -c fin_dev '~'        where a character can be typed
     ./kb.py diff fin_dev [other]      differences (default: against its base)
     ./kb.py install                   build bundles and install them (sudo)
-    ./kb.py package                   build bundles and zip them into dist/ (for releases)
+    ./kb.py package                   build bundles and zip them into dist/
+    ./kb.py release v1.0              package + publish a GitHub release (needs gh)
 
 <layout> is a layouts/<name>.py, a base/<name>.keylayout, or a file path.
 """
@@ -137,6 +138,7 @@ def main():
     p = sub.add_parser("diff"); p.add_argument("layout"); p.add_argument("other", nargs="?"); p.set_defaults(fn=cmd_diff)
     sub.add_parser("install").set_defaults(fn=lambda _: build.install())
     sub.add_parser("package").set_defaults(fn=lambda _: build.package())
+    p = sub.add_parser("release"); p.add_argument("tag"); p.set_defaults(fn=lambda a: build.release(a.tag))
     a = ap.parse_args()
     a.fn(a)
 

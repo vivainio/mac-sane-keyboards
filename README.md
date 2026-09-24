@@ -5,10 +5,11 @@ macOS keyboard layouts defined as a base `.keylayout` plus small Python patches.
     base/FIN.keylayout    stock macOS Finnish layout (dumped with tools/dump_layout.swift)
     layouts/fin_dev.py    layout definition: name, base, PATCH table
     build.py              build library used by kb.py
-    kb.py                 CLI: list/show/key/diff/install/package
+    kb.py                 CLI: list/show/key/diff/install/package/release
 
     ./kb.py install       build into build/ + copy to /Library/Keyboard Layouts (sudo)
-    ./kb.py package       zip bundles into dist/ (release assets)
+    ./kb.py package       zip bundles into dist/
+    ./kb.py release v1.0  package + publish a GitHub release (needs gh)
 
 ## Install from a release
 
@@ -18,8 +19,7 @@ Downloads `FIN-dev-layout.zip` from the latest GitHub release and copies the bun
 `/Library/Keyboard Layouts` (sudo). Pass a layout name to pick another:
 `... | bash -s <name>`.
 
-To publish a release, push a tag: `git tag v1.0 && git push --tags` (the
-`release.yml` workflow builds the zips and attaches them).
+To publish a release: `./kb.py release v1.0` (needs the `gh` CLI, logged in).
 
 After installing, log out and back in, then add the layout under
 System Settings → Keyboard → Text Input.

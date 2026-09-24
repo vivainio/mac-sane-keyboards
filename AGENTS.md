@@ -64,6 +64,6 @@ swift tools/dump_layout.swift com.apple.keylayout.<InputSourceID> <BASE> > base/
 - The base file contains XML 1.1 control-char references; `build.py` (used by `kb.py`) handles
   them, so don't parse/rewrite the file with other tools.
 - `build/` and `dist/` are generated; don't commit them.
-- Releases: pushing a `v*` tag runs `.github/workflows/release.yml`, which runs `./kb.py package` and
-  attaches the zips; `install.sh` installs the latest release. Don't tag or release without asking.
+- Releases are cut locally with `./kb.py release <tag>` (uses `gh release create`); `install.sh`
+  installs the latest release. Don't release without asking.
 - Keep patches minimal so the diff against stock stays reviewable.

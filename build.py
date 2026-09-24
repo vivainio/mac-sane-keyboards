@@ -125,6 +125,15 @@ def package() -> list[Path]:
     return zips
 
 
+def release(tag: str) -> None:
+    """Package and publish a GitHub release with `gh`."""
+    if not shutil.which("gh"):
+        sys.exit("gh CLI required: https://cli.github.com")
+    zips = package()
+    subprocess.run(["gh", "release", "create", tag, *map(str, zips), "--generate-notes"],
+                   check=True, cwd=ROOT)
+
+
 def install():
     bundles = build_all()
     dest = Path("/Library/Keyboard Layouts")
