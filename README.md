@@ -1,32 +1,52 @@
 # mac-sane-keyboards
 
-macOS keyboard layouts defined as a base `.keylayout` plus small Python patches.
+**FIN dev layout**: the stock macOS Finnish layout, changed so that programming
+characters are easy to type. It has no dead keys and puts `~ / \ ( )` on single keys.
 
-    base/FIN.keylayout    stock macOS Finnish layout (dumped with tools/dump_layout.swift)
-    layouts/fin_dev.py    layout definition: name, base, PATCH table
-    build.py              build library used by kb.py
-    kb.py                 CLI: list/show/key/diff/install/package/release
+## What changed
 
-    ./kb.py install       build into build/ + copy to /Library/Keyboard Layouts (sudo)
-    ./kb.py package       zip bundles into dist/
-    ./kb.py release v1.0  package + publish a GitHub release (needs gh)
+Everything else is stock Finnish. Only these keys differ:
 
-## Install from a release
+| Key (Finnish label) | Was | Now | Why |
+|---|---|---|---|
+| top left `§ °` | `§` `°` | `~` plain, `` ` `` shift | `§` and `°` are rarely needed; tilde and backtick are common in code and shells |
+| `´` key, right of `+` | dead key `´` `` ` `` | `(` plain, `)` shift | dead key removed; parens without reaching for shift+8/9 |
+| `¨` key | dead key `¨` `^` `~` | `\` plain, `\|` shift, `^` option | dead key removed; backslash is an option+shift chord on stock |
+| `å` key | `å` `Å` | `/` plain, `?` shift | slash is shift+7 on stock; `å` moves to option (below) |
+| option + `å` key | `˙` `˚` | `å` `Å` | `å` is still reachable on its own key |
+| option + `a` | Apple logo | `å` `Å` | same as on a US Mac layout, easy to remember |
+| option + `e` | `é` | `€` | euro stays available |
+| shift + `4` | `€` | `$` | dollar on a plain shift, like on a US keyboard |
+
+Notes:
+
+- No key on this layout is a dead key, in any state (including Caps Lock), so what
+  you press is what you get.
+- `[ ] { }` are still on option+8/9 (with shift for the curlies), and `|` is still on option+7.
+- `ä` and `ö` are unchanged.
+
+## Install
 
     curl -fsSL https://raw.githubusercontent.com/vivainio/mac-sane-keyboards/main/install.sh | bash
 
 Downloads `FIN-dev-layout.zip` from the latest GitHub release and copies the bundle to
-`/Library/Keyboard Layouts` (sudo). Pass a layout name to pick another:
-`... | bash -s <name>`.
+`/Library/Keyboard Layouts` (asks for sudo). Then log out and back in and add
+"FIN dev layout" under System Settings → Keyboard → Text Input → Edit… → **+**.
 
-To publish a release: `./kb.py release v1.0` (needs the `gh` CLI, logged in).
+## Building and changing the layout
 
-After installing, log out and back in, then add the layout under
-System Settings → Keyboard → Text Input.
+The layout is the stock Finnish `.keylayout` (`base/FIN.keylayout`, dumped from macOS with
+`tools/dump_layout.swift`) plus a small Python patch in [layouts/fin_dev.py](layouts/fin_dev.py):
 
-## Defining a layout
+    ./kb.py show fin_dev          compact key table
+    ./kb.py diff fin_dev          what differs from stock
+    ./kb.py key fin_dev 30        one key, all modifier states
+    ./kb.py key -c fin_dev '~'    where a character is typed
+    ./kb.py install               build and install from source (sudo)
+    ./kb.py package               zip the bundle into dist/
+    ./kb.py release v1.0          package and publish a GitHub release (needs gh)
 
-Add `layouts/<name>.py` defining `LAYOUT`:
+Layouts are `layouts/<name>.py` files defining `LAYOUT`:
 
     from kbd import Layout, State
 
@@ -40,8 +60,4 @@ Add `layouts/<name>.py` defining `LAYOUT`:
     )
 
 `State`: plain, shift, caps, option, shift_option, caps_option, cmd_option, control.
-
-## Tools
-
-    swift tools/dump_layout.swift com.apple.keylayout.Finnish FIN > base/FIN.keylayout
-    ./kb.py show|key|diff ...     # inspect layouts compactly (see ./kb.py -h)
+See [AGENTS.md](AGENTS.md) for details.
