@@ -10,11 +10,11 @@ LAYOUT = Layout(
         # top left (§ ° key): ~ plain, ` on shift
         10: {S.plain: "~", S.shift: "`", S.caps: "~", S.option: "~", S.shift_option: "`",
              S.caps_option: "~", S.cmd_option: "~"},
-        # top right (´ key): { plain, [ on shift, \ on option
-        24: {S.plain: "{", S.shift: "[", S.caps: "{", S.option: "\\",
+        # top right (´ key): { plain, ` on shift, \ on option
+        24: {S.plain: "{", S.shift: "`", S.caps: "{", S.option: "\\",
              S.caps_option: "\\", S.cmd_option: "{"},
-        # the ¨ key: } plain, ] on shift, ^ and ´ on option
-        30: {S.plain: "}", S.shift: "]", S.caps: "}", S.option: "^", S.shift_option: "´",
+        # the ¨ key: } plain, ^ on shift, ^ and ´ on option
+        30: {S.plain: "}", S.shift: "^", S.caps: "}", S.option: "^", S.shift_option: "´",
              S.caps_option: "^", S.cmd_option: "}"},
     },
 )
