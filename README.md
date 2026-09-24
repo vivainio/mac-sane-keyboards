@@ -33,6 +33,16 @@ Downloads `FIN-dev-layout.zip` from the latest GitHub release and copies the bun
 `/Library/Keyboard Layouts` (asks for sudo). Then log out and back in and add
 "FIN dev layout" under System Settings → Keyboard → Text Input → Edit… → **+**.
 
+## Function keys
+
+Making F1–F12 work without holding Fn is a macOS setting, not part of a layout:
+System Settings → Keyboard → Keyboard Shortcuts… → Function Keys → "Use F1, F2, etc.
+keys as standard function keys", or
+
+    defaults write -g com.apple.keyboard.fnState -bool true
+
+Log out and back in if it doesn't apply right away.
+
 ## Building and changing the layout
 
 The layout is the stock Finnish `.keylayout` (`base/FIN.keylayout`, dumped from macOS with
