@@ -10,8 +10,8 @@ LAYOUT = Layout(
         # top left (§ ° key): ~ plain, ` on shift
         10: {S.plain: "~", S.shift: "`", S.caps: "~", S.option: "~", S.shift_option: "`",
              S.caps_option: "~", S.cmd_option: "~"},
-        # top right (´ key): [ {, with \ and | on option
-        24: {S.plain: "[", S.shift: "{", S.caps: "[", S.option: "\\", S.shift_option: "|",
+        # top right (´ key): [ {, with \ on option
+        24: {S.plain: "[", S.shift: "{", S.caps: "[", S.option: "\\",
              S.caps_option: "\\", S.cmd_option: "["},
         # the ¨ key: ] }, with ^ and ´ on option
         30: {S.plain: "]", S.shift: "}", S.caps: "]", S.option: "^", S.shift_option: "´",
