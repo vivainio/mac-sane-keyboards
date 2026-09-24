@@ -10,6 +10,9 @@ LAYOUT = Layout(
         # the å key: ( plain, { on shift; å moved to option
         33: {S.plain: "(", S.shift: "{", S.caps: "(", S.option: "å", S.shift_option: "Å",
              S.caps_option: "Å"},
+        # the ¨ key: ) plain, } on shift, ^ and ´ on option
+        30: {S.plain: ")", S.shift: "}", S.caps: ")", S.option: "^", S.shift_option: "´",
+             S.caps_option: "^", S.cmd_option: ")"},
         # the 4 key: $ on shift
         21: {S.shift: "$"},
         # the e key: € on option
@@ -19,8 +22,5 @@ LAYOUT = Layout(
              S.caps_option: "~", S.cmd_option: "~"},
         # top right (´ key): \ plain, | on shift
         24: {S.plain: "\\", S.shift: "|", S.caps: "\\", S.option: "\\", S.cmd_option: "\\"},
-        # the ¨ key: ) plain, } on shift, ^ and ´ on option
-        30: {S.plain: ")", S.shift: "}", S.caps: ")", S.option: "^", S.shift_option: "´",
-             S.caps_option: "^", S.cmd_option: ")"},
     },
 )
