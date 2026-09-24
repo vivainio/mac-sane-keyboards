@@ -34,6 +34,5 @@ Add `layouts/<name>.py` defining `LAYOUT`:
     swift tools/dump_layout.swift com.apple.keylayout.Finnish FIN > base/FIN.keylayout
     ./kb.py show|key|diff ...     # inspect layouts compactly (see ./kb.py -h)
 
-`fin_dev.py` is based on
-https://github.com/saneDG/keyboard-layout-FIN-no-deadkeys; its output matches
-that layout key for key.
+`fin_dev.py` was originally inspired by
+https://github.com/saneDG/keyboard-layout-FIN-no-deadkeys and has since diverged.
