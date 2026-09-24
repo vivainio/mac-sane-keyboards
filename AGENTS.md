@@ -9,12 +9,11 @@ Never hand-edit `.keylayout` XML; change the patch and rebuild.
 1. Find the key code(s) to change (see "Key codes").
 2. Edit the existing `layouts/*.py`, or copy `layouts/fin_dev.py` to a new file
    for a separate layout. The file must define `LAYOUT = Layout(...)`.
-3. Run `./build.py` (output goes to `build/`). Fix any errors.
-4. Verify with `./kb.py diff <name>` (compares against its base): only the intended
+3. Verify with `./kb.py diff <name>` (compares against its base): only the intended
    keys/states should differ. `./kb.py show <name>` prints a compact key table,
    `./kb.py key <name> <code>` shows one key, `./kb.py key -c <name> '~'` finds where a
    character is typed. Dead keys appear as `◌x`.
-5. Installing needs sudo, so tell the user to run `./build.py install` themselves
+4. Installing needs sudo, so tell the user to run `./kb.py install` themselves
    rather than running it. Afterwards they must log out and back in, then add the
    layout under System Settings → Keyboard → Text Input.
 
@@ -62,7 +61,7 @@ swift tools/dump_layout.swift com.apple.keylayout.<InputSourceID> <BASE> > base/
 ## Gotchas
 
 - Layout `name` must not contain spaces (`Layout` raises otherwise).
-- The base file contains XML 1.1 control-char references; `build.py` handles
+- The base file contains XML 1.1 control-char references; `build.py` (used by `kb.py`) handles
   them, so don't parse/rewrite the file with other tools.
 - `build/` is generated; don't commit it.
 - Keep patches minimal so the diff against stock stays reviewable.

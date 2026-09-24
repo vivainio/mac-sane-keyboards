@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
 """Build macOS keyboard layout bundles from base/*.keylayout + layouts/*.py.
 
-    ./build.py            build all layouts into build/
-    ./build.py install    build, then copy to /Library/Keyboard Layouts (sudo)
+Library used by kb.py; run `./kb.py install`.
 """
 import importlib.util, plistlib, re, shutil, subprocess, sys, zlib
 import xml.etree.ElementTree as ET
@@ -100,20 +98,14 @@ def build(layout: Layout) -> Path:
     return contents.parent
 
 
-def main(install=None):
-    if install is None:
-        install = sys.argv[1:] == ["install"]
+def install():
     bundles = [build(load(p)) for p in sorted((ROOT / "layouts").glob("*.py"))]
     for b in bundles:
         print("built", b.relative_to(ROOT))
-    if install:
-        dest = Path("/Library/Keyboard Layouts")
-        subprocess.run(["sudo", "mkdir", "-p", str(dest)], check=True)
-        for b in bundles:
-            subprocess.run(["sudo", "rm", "-rf", str(dest / b.name)], check=True)
-            subprocess.run(["sudo", "cp", "-R", str(b), str(dest)], check=True)
-        print("Installed. Log out/in, then add the layout in System Settings > Keyboard > Text Input.")
+    dest = Path("/Library/Keyboard Layouts")
+    subprocess.run(["sudo", "mkdir", "-p", str(dest)], check=True)
+    for b in bundles:
+        subprocess.run(["sudo", "rm", "-rf", str(dest / b.name)], check=True)
+        subprocess.run(["sudo", "cp", "-R", str(b), str(dest)], check=True)
+    print("Installed. Log out/in, then add the layout in System Settings > Keyboard > Text Input.")
 
-
-if __name__ == "__main__":
-    main()

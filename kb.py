@@ -6,7 +6,7 @@
     ./kb.py key fin_dev 30            all states of key code 30
     ./kb.py key -c fin_dev '~'        where a character can be typed
     ./kb.py diff fin_dev [other]      differences (default: against its base)
-    ./kb.py build | install           build bundles (install needs sudo)
+    ./kb.py install                   build bundles and install them (sudo)
 
 <layout> is a layouts/<name>.py, a base/<name>.keylayout, or a file path.
 """
@@ -134,8 +134,7 @@ def main():
     p = sub.add_parser("show"); p.add_argument("layout"); p.add_argument("--all", action="store_true"); p.set_defaults(fn=cmd_show)
     p = sub.add_parser("key"); p.add_argument("layout"); p.add_argument("key", help="key code, or a character with -c"); p.add_argument("-c", "--char", action="store_true"); p.set_defaults(fn=cmd_key)
     p = sub.add_parser("diff"); p.add_argument("layout"); p.add_argument("other", nargs="?"); p.set_defaults(fn=cmd_diff)
-    sub.add_parser("build").set_defaults(fn=lambda _: build.main())
-    sub.add_parser("install").set_defaults(fn=lambda _: build.main(install=True))
+    sub.add_parser("install").set_defaults(fn=lambda _: build.install())
     a = ap.parse_args()
     a.fn(a)
 

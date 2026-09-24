@@ -4,10 +4,10 @@ macOS keyboard layouts defined as a base `.keylayout` plus small Python patches.
 
     base/FIN.keylayout    stock macOS Finnish layout (dumped with tools/dump_layout.swift)
     layouts/fin_dev.py    layout definition: name, base, PATCH table
-    build.py              builds bundles into build/
+    build.py              build library used by kb.py
+    kb.py                 CLI: list/show/key/diff/install
 
-    ./build.py            build
-    ./build.py install    build + copy to /Library/Keyboard Layouts (sudo)
+    ./kb.py install       build into build/ + copy to /Library/Keyboard Layouts (sudo)
 
 After installing, log out and back in, then add the layout under
 System Settings → Keyboard → Text Input.
