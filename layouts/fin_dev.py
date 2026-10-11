@@ -1,7 +1,7 @@
 from kbd import Layout, State as S
 
 # Finnish layout for development: no dead keys, no §°¨. Tilde, backtick, slash,
-# ( ) \ and | are on single keys; [ ] { } stay on option+8/9.
+# ( ) \ and | are on single keys; [ ] use option+8/9, { } use shift+8/9.
 LAYOUT = Layout(
     name="FIN-dev-layout",
     display="FIN dev layout",
@@ -17,6 +17,10 @@ LAYOUT = Layout(
         0: {S.option: "å", S.shift_option: "Å", S.caps_option: "Å"},
         # the 4 key: $ on shift
         21: {S.shift: "$"},
+        # the 8 key: { on shift; remove the duplicate option+shift binding
+        28: {S.shift: "{", S.shift_option: ""},
+        # the 9 key: } on shift; remove the duplicate option+shift binding
+        25: {S.shift: "}", S.shift_option: ""},
         # the e key: € on option
         14: {S.option: "€", S.caps_option: "€"},
         # top left (§ ° key): ~ plain, ` on shift

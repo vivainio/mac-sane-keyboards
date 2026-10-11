@@ -17,12 +17,13 @@ Everything else is stock Finnish. Only these keys differ:
 | option + `a` | Apple logo | `å` `Å` | same as on a US Mac layout, easy to remember |
 | option + `e` | `é` | `€` | euro stays available |
 | shift + `4` | `€` | `$` | dollar on a plain shift, like on a US keyboard |
+| shift + `8` / `9` | `(` / `)` | `{` / `}` | curlies on shift; parens are on the `´` key |
 
 Notes:
 
 - No key on this layout is a dead key, in any state (including Caps Lock), so what
   you press is what you get.
-- `[ ] { }` are still on option+8/9 (with shift for the curlies), and `|` is still on option+7.
+- `[ ]` are on option+8/9; `{ }` are on shift+8/9. Option+shift+8/9 produce no output. `|` is also on option+7.
 - `ä` and `ö` are unchanged.
 
 See also the Mac tutorial
